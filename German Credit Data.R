@@ -185,3 +185,22 @@ property_plot
 #Creates a bar plot based on personal staus (sex and martial status) 
 personvcredit_plot = ggplot(data = credit_df, aes(x= personal_status, colour = class)) + geom_bar(position = "dodge", stat = "count")
 personvcredit_plot
+
+#Boxplot housing type, credit amount_SM
+p2 <- ggplot(credit_df, aes(x=housing, y=credit_amount, fill=class)) + 
+  geom_boxplot() +
+  facet_wrap(~housing, scale="free")
+p2
+
+#Boxplot job type and credit amount_SM
+p1 <- ggplot(credit_df, aes(x=job, y=credit_amount, fill=class)) + 
+  geom_boxplot() +
+  facet_wrap(~class) + coord_flip()
+p1
+
+#Density Residence since_SM
+residence_since_plot_balanced <- ggplot(credit_df_balanced, aes(x=residence_since, fill=class)) + geom_density(alpha=0.50) + 
+  scale_fill_manual(name="Credit Type", values = class_palette) +
+  ggtitle("Density of Customers by Residence Since") + labs(y="Proportion", x="Residence_Since") +
+  theme(plot.title = element_text(hjust=0.5))
+residence_since_plot_balanced
