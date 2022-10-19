@@ -177,3 +177,11 @@ age_plot_balanced <- ggplot(credit_df_balanced, aes(x=age, fill=class)) + geom_d
   ggtitle("Density of Customers by Age and Credit Type") + labs(y="Proportion", x="Age") +
   theme(plot.title = element_text(hjust=0.5))
 age_plot_balanced
+
+# Creates a bar plot based on propertry magnitude (are these meant to be assets?) and credit - could look further into this maybe
+property_plot = ggplot(data = credit_df, aes(x= property_magnitude, colour = class)) + geom_bar(position = "dodge", stat = "count")
+property_plot
+
+#Creates a bar plot based on personal staus (sex and martial status) 
+personvcredit_plot = ggplot(data = credit_df, aes(x= personal_status, colour = class)) + geom_bar(position = "dodge", stat = "count")
+personvcredit_plot
