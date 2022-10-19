@@ -100,7 +100,7 @@ age_plot <- ggplot(credit_df, aes(x=age, fill=class)) + geom_density(alpha=0.50)
 age_plot
 
 
-# We create a new dataframe that oversamples from the 'good' records for the class target variable
+# We create a new dataframe that oversamples from the 'bad' records for the class target variable
 credit_df_balanced <- ovun.sample(class~., data=credit_df, method="over", seed=42)$data
 table(credit_df_balanced$class) #table checks the number of each class value in balanced dataframe
 
