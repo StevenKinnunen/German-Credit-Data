@@ -15,13 +15,13 @@ class_palette <- c(good = "#000066", bad = "#660000") # setting consistent color
 # good are blue, whereas bad are red
 
 
-# This plot allows us to look at the count of 'good' and 'bad' values in class column
-class_plot <- ggplot(credit_df, aes(x=class, fill=class)) + geom_bar() +
-  scale_fill_manual(values = class_palette) + # Sets the colors to class_palette and fill by manually
-  ggtitle("Count of Customers with Good and Bad Credit") + # Sets a title for the plot
-  labs(y="Count", x="Credit Type") + # Sets the y and x axis labels respectively for the plot
-  theme(plot.title = element_text(hjust=0.5), legend.position = "none") # Centre the title and
-# suppresses the legend since it is redundant in this plot
+# This pie chart allows us to look at the count of 'good' and 'bad' values in the class variable.
+class_plot <- ggplot(credit_df, aes(x="", y=class, fill=class)) + geom_bar(stat="identity", width=1) + 
+  coord_polar("y", start=0) + scale_fill_manual(name="Class", values = class_palette) + # Sets the colors to class_palette and fill by manually
+  ggtitle("Customers' Credit Classification") + # Sets a title for the pie.
+  labs(y=NULL, x=NULL) + # Removes the y and x axis labels for the pie.
+  theme(plot.title = element_text(hjust=0.5), axis.text=element_blank(), axis.ticks=element_blank(), 
+        panel.grid=element_blank(), legend.position="bottom") # Removes excess labels and centres the legend.
 class_plot 
 
 
