@@ -179,7 +179,7 @@ age_plot_balanced <- ggplot(credit_df_balanced, aes(x=age, fill=class)) + geom_d
 age_plot_balanced
 
 # Creates a bar plot based on propertry magnitude (are these meant to be assets?) and credit - could look further into this maybe
-property_plot = ggplot(data = credit_df, aes(x= property_magnitude, colour = class)) + geom_bar(position = "dodge", stat = "count")
+property_plot = ggplot(data = credit_df_balanced, aes(x= property_magnitude, colour = class)) + geom_bar(position = "dodge", stat = "count")
 property_plot
 
 #Creates a bar plot based on personal staus (sex and martial status) 
