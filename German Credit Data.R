@@ -245,3 +245,29 @@ residence_since_plot_balanced <- ggplot(credit_df_balanced, aes(x=residence_sinc
   ggtitle("Density of Customers by Residence Since") + labs(y="Proportion", x="Residence_Since") +
   theme(plot.title = element_text(hjust=0.5))
 residence_since_plot_balanced
+
+#Short-term vs Long-term
+short_term_loan <- filter(credit_df_balanced, duration <= 18)
+long_term_loan <- filter(credit_df_balanced, duration > 18)
+
+short_df <- short_term_loan %>%
+  group_by(class) %>%
+  mutate(short_diff=n())
+
+short_plot <- ggplot(short_df, aes(x=reorder(class, -short_diff), fill = class)) + 
+  geom_bar(position="dodge", stat="count") + theme(axis.text.x = element_text(angle = 90)) + #
+  scale_fill_manual(name="Credit Type", values = class_palette) +
+  ggtitle("Count of Customers that have a short-term loan grouped by credit type") + labs(y="Count", x="Good vs. Bad") +
+  theme(plot.title = element_text(hjust=0.5))
+short_plot
+
+long_df <- long_term_loan %>%
+  group_by(class) %>%
+  mutate(long_diff=n())
+
+long_plot <- ggplot(long_df, aes(x=reorder(class, -long_diff), fill = class)) + 
+  geom_bar(position="dodge", stat="count") + theme(axis.text.x = element_text(angle = 90)) + #
+  scale_fill_manual(name="Credit Type", values = class_palette) +
+  ggtitle("Count of Customers that have a long-term loan grouped by credit type") + labs(y="Count", x="Good vs. Bad") +
+  theme(plot.title = element_text(hjust=0.5))
+long_plot
