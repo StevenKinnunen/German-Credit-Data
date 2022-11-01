@@ -225,19 +225,7 @@ credit_by_savings_plot <- ggplot(savings_df_balanced, aes(x=reorder(savings_stat
   geom_split_violin() + theme_minimal() + 
   labs(x="Savings Status", y="Credit",title="Credit Density by Savings and Class")
 credit_by_savings_plot
-                                                      
 
-#Boxplot housing type, credit amount_SM
-p2 <- ggplot(credit_df, aes(x=housing, y=credit_amount, fill=class)) + 
-  geom_boxplot() +
-  facet_wrap(~housing, scale="free")
-p2
-
-#Boxplot job type and credit amount_SM
-p1 <- ggplot(credit_df, aes(x=job, y=credit_amount, fill=class)) + 
-  geom_boxplot() +
-  facet_wrap(~class) + coord_flip()
-p1
 
 #Density Residence since_SM
 residence_since_plot_balanced <- ggplot(credit_df_balanced, aes(x=residence_since, fill=class)) + geom_density(alpha=0.50) + 
