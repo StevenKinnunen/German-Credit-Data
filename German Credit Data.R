@@ -103,21 +103,16 @@ age_plot_balanced <- ggplot(credit_df_balanced, aes(x=age, fill=class)) + geom_d
   theme(plot.title = element_text(hjust=0.5))
 age_plot_balanced
 
-# Creates a bar plot based on propertry magnitude (are these meant to be assets?) and credit - could look further into this maybe
-property_plot = ggplot(data = credit_df_balanced, aes(x= property_magnitude, colour = class)) + geom_bar(position = "dodge", stat = "count")
+# Creates a bar plot based on property type
+property_plot = ggplot(data = credit_df_balanced, aes(x= property_magnitude, fill = class)) + geom_bar(position = "dodge", stat = "count") +
+  scale_fill_manual(name="Credit Type", values = class_palette) +  ggtitle("Count of Customers by Asset Type and Credit Type") + labs(y="Count", x= "Asset Type") +
+  theme(plot.title = element_text(hjust=0.5))
 property_plot
 
 #Creates a bar plot based on personal staus (sex and martial status) 
-personvcredit_plot = ggplot(data = credit_df, aes(x= personal_status, colour = class)) + geom_bar(position = "dodge", stat = "count")
+personvcredit_plot = ggplot(data = credit_df, aes(x= personal_status, fill = class)) + geom_bar(position = "dodge", stat = "count") +
+  scale_fill_manual(name="Credit Type", values = class_palette)
 personvcredit_plot
-
-
-#Density Residence since_SM
-residence_since_plot_balanced <- ggplot(credit_df_balanced, aes(x=residence_since, fill=class)) + geom_density(alpha=0.50) + 
-  scale_fill_manual(name="Credit Type", values = class_palette) +
-  ggtitle("Density of Customers by Residence Since") + labs(y="Proportion", x="Residence_Since") +
-  theme(plot.title = element_text(hjust=0.5))
-residence_since_plot_balanced
 
 #Short-term vs Long-term
 short_term_loan <- filter(credit_df_balanced, duration <= 18)
